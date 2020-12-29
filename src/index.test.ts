@@ -1,5 +1,4 @@
-import { input } from './input';
-import { createTree } from './index';
+import { createTree, visualizeData } from './index';
 
 test('createTree', () => {
   const mockedOutput = {
@@ -19,7 +18,18 @@ test('createTree', () => {
     ],
   };
 
-  const testedValue = createTree(JSON.parse(input));
+  const testedValue = createTree('Siroun');
 
   expect(testedValue).toEqual(mockedOutput);
+});
+
+test('visualizeData', () => {
+  const preElement = document.createElement('pre');
+  preElement.id = 'data';
+  document.body.appendChild(preElement);
+  const expectedOutput = JSON.stringify(createTree('Siroun'), undefined, 2)
+
+  visualizeData();
+
+  expect(preElement.innerHTML).toEqual(expectedOutput);
 });
